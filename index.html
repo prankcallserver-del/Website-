@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecurePay | Binance Deposit Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     LOGIN SCREEN
+     ============================================================ -->
+<div class="login-wrapper" id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">₿</div>
+    <h1 class="login-title">SecurePay</h1>
+    <p class="login-sub">Sign in to access your deposit portal</p>
+
+    <form class="login-form" id="loginForm" autocomplete="off">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="loginUser" placeholder="Enter your username" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <div class="password-wrap">
+          <input type="password" id="loginPass" placeholder="Enter your password" autocomplete="off">
+          <button type="button" class="eye-btn" id="eyeBtn">👁</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary login-btn">
+        <span>🔐</span> Sign In
+      </button>
+
+      <div class="status" id="loginStatus"></div>
+    </form>
+
+    <div class="login-footer">
+      <span class="lock">🔒</span> Protected by 256-bit SSL
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN APP (hidden until login)
+     ============================================================ -->
+<div class="card" id="appScreen" style="display:none;">
+
+  <!-- ============ PROFILE BAR ============ -->
+  <div class="profile-bar">
+    <div class="profile-left">
+      <div class="avatar" id="avatar">JD</div>
+      <div class="user-info">
+        <div class="username">
+          <span id="userName">John Doe</span>
+          <span class="verified">✔</span>
+        </div>
+        <div class="user-id">ID: <span id="userId">84920175</span></div>
+      </div>
+    </div>
+    <div class="profile-right">
+      <div class="balance-label">Balance</div>
+      <div class="balance-value" id="balanceValue">$0.00</div>
+      <div class="balance-change" id="balanceChange">+ $0</div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <div class="header">
+    <div class="logo">₿</div>
+    <div class="header-text">
+      <h1>SecurePay Deposit Portal</h1>
+      <p><span class="dot"></span> Binance Pay • SSL Encrypted</p>
+    </div>
+    <button class="logout-btn" id="logoutBtn" title="Logout">⎋</button>
+  </div>
+
+  <div class="body">
+
+    <!-- STEP 1 -->
+    <div id="step1">
+
+      <div class="section-label">Select Amount</div>
+
+      <div class="amounts">
+        <div class="amount-btn" data-amt="30">
+          <div class="amt">$30</div>
+          <div class="sub">USD</div>
+        </div>
+        <div class="amount-btn" data-amt="40">
+          <div class="amt">$40</div>
+          <div class="sub">USD</div>
+        </div>
+        <div class="amount-btn" data-amt="50">
+          <div class="amt">$50</div>
+          <div class="sub">USD</div>
+        </div>
+      </div>
+
+      <div class="notice">
+        <div class="notice-icon">🔒</div>
+        <p>To complete your deposit, please send the <b>selected amount</b> to the Binance ID below. Once the payment is done, click <b>Confirm Payment</b> to proceed.</p>
+      </div>
+
+      <div class="pay-box">
+        <div class="tag">Binance Pay ID</div>
+        <div class="pay-row">
+          <div class="uid" id="binanceId">384920175</div>
+          <button class="copy-btn" id="copyBtn">
+            <span>📋</span> <span id="copyText">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="confirmBtn" disabled>
+        <span>🔐</span> Confirm Payment
+      </button>
+
+      <div class="status" id="status"></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step2" id="step2">
+      <div class="divider"><span>Payment Verification</span></div>
+
+      <div class="field">
+        <label>Order Number</label>
+        <input type="text" id="orderNumber" placeholder="e.g. ORD-20251234" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label>Binance Transaction ID (TxID)</label>
+        <input type="text" id="txId" placeholder="e.g. 0x8a3f...b92c" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label>Your Binance ID / Email</label>
+        <input type="text" id="senderId" placeholder="e.g. 384920175 or you@email.com" autocomplete="off">
+      </div>
+
+      <button class="btn btn-primary" id="submitProofBtn">
+        <span>📤</span> Submit Payment Proof
+      </button>
+      <div class="status" id="status2"></div>
+    </div>
+
+    <!-- ERROR BOX (payment failed) -->
+    <div class="error-box" id="errorBox">
+      <div class="error-circle">✕</div>
+      <h3>Payment Verification Failed</h3>
+      <p>Your payment could not be verified. Please check your transaction details and try again.</p>
+      <div class="error-ref" id="errorRef">REF: —</div>
+      <button class="btn btn-secondary" id="retryBtn">
+        <span>↻</span> Try Again
+      </button>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span class="lock">🔒</span> Secured by 256-bit SSL encryption • © 2025 SecurePay
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+        </html>

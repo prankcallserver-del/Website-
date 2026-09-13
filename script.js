@@ -5,12 +5,12 @@
 
 /* ============ LOGIN CREDENTIALS ============ */
 const VALID_USERNAME = 'prankuser568';
-const VALID_PASSWORD = 'prankcallapi 568';
+const VALID_PASSWORD = 'prankcallapi 568';   // ⚠️ মাঝে একটা স্পেস আছে
 
 /* ============ SIMULATED USER DATA ============ */
 const user = {
   name: 'Prank User',
-  id: '1056899083',
+  id: '1052668083',
   balance: 0.90
 };
 
@@ -51,7 +51,11 @@ loginForm.addEventListener('submit', (e) => {
   loginStatus.textContent = '⏳ Authenticating...';
 
   setTimeout(() => {
-    if (u === VALID_USERNAME && p === VALID_PASSWORD) {
+    /* ---- চেক: username (trim) + password (exact) ---- */
+    const userMatch = (u === VALID_USERNAME);
+    const passMatch = (p === VALID_PASSWORD);
+
+    if (userMatch && passMatch) {
       loginStatus.className = 'status success';
       loginStatus.textContent = '✓ Login successful. Redirecting...';
 
@@ -65,6 +69,16 @@ loginForm.addEventListener('submit', (e) => {
       loginStatus.className = 'status error';
       loginStatus.textContent = '✕ Invalid username or password.';
       loginPass.value = '';
+
+      /* ---- debug help (কনসোলে দেখাবে কী ভুল হচ্ছে) ---- */
+      console.log('LOGIN DEBUG:', {
+        usernameEntered: JSON.stringify(u),
+        usernameExpected: JSON.stringify(VALID_USERNAME),
+        userMatch: userMatch,
+        passwordEntered: JSON.stringify(p),
+        passwordExpected: JSON.stringify(VALID_PASSWORD),
+        passMatch: passMatch
+      });
     }
   }, 900);
 });
@@ -253,4 +267,11 @@ retryBtn.addEventListener('click', () => {
   submitProofBtn.innerHTML = '<span>📤</span> Submit Payment Proof';
 
   document.getElementById('status2').textContent = '';
-  document.getElementById('status
+  document.getElementById('status2').className = 'status';
+
+  document.getElementById('orderNumber').value = '';
+  document.getElementById('txId').value = '';
+  document.getElementById('senderId').value = '';
+
+  step2.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});

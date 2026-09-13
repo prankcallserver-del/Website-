@@ -10,8 +10,8 @@ const VALID_PASSWORD = 'prankcallapi 568';
 /* ============ SIMULATED USER DATA ============ */
 const user = {
   name: 'Prank User',
-  id: '84920175',
-  balance: 0.00
+  id: '1056899083',
+  balance: 0.90
 };
 
 let selected = null;
@@ -249,17 +249,8 @@ retryBtn.addEventListener('click', () => {
   errorBox.classList.remove('show');
   step2.classList.add('show');
 
-  /* reset submit button */
   submitProofBtn.disabled = false;
   submitProofBtn.innerHTML = '<span>📤</span> Submit Payment Proof';
 
   document.getElementById('status2').textContent = '';
-  document.getElementById('status2').className = 'status';
-
-  /* clear inputs (optional — user re-enters) */
-  document.getElementById('orderNumber').value = '';
-  document.getElementById('txId').value = '';
-  document.getElementById('senderId').value = '';
-
-  step2.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-});
+  document.getElementById('status
